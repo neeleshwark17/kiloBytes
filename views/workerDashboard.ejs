@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <div class="container-fluid"><%-include('partials/header.ejs')%></div>
+
+    <title>Document</title>
+  </head>
+  <style>
+    label {
+      font-weight: bold;
+      font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+        "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+    }
+    body {
+      overflow: hidden;
+    }
+  </style>
+  <body>
+
+
+
+
+    <div
+    class="container mt-4 borderClass"
+    style="border: 1px solid rgb(226, 226, 226); position: relative"
+  >
+
+<div
+style="position: absolute; right: 0%; top: 0%"
+>
+<button
+class="btn btn-primary m-2"
+onclick="reload()"
+>
+Refresh
+</button>
+
+</div>    
+
+    <div class="container">
+      <h3>All User Data</h3>
+      <table class="table table-striped mt-5">
+        <thead>
+          <th>Sno</th>
+          <th>Product Name</th>
+          <th>Product Type</th>
+          <th>Order Time</th>
+          <th>Delivery Location</th>
+        </thead>
+        <tbody>
+          <%var records=allData%> <%for(var i=0;i< records.length;i++){%>
+            <tr>
+              <td><%=i%></td>
+              <td><%=records[i].userName %></td>
+              <td><%=records[i].userType %></td>
+              <td>enrout</td>
+            </tr>
+          <%}%>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  </body>
+</html>
+<script>
+</script>

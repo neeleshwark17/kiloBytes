@@ -1,0 +1,41 @@
+POST http://localhost:3000/signUp  HTTP/1.1
+Content-Type: application/json
+
+{
+    "userName":"w4",
+    "userPhone":"1010101010",
+    "userType":"worker",
+    "userPassword":"123456"
+}
+
+###
+
+POST http://localhost:3000/adminSignIn  HTTP/1.1
+Content-Type: application/json
+
+{
+    "adminPhone":"1234567890",
+    "adminPassword":"123456"
+}
+
+###
+POST http://localhost:3000/signIn  HTTP/1.1
+Content-Type: application/json
+
+{
+    "adminPhone":"9877433418",
+    "adminPassword":"123456"
+}
+
+###
+POST http://localhost:3000/addWorkerPost  HTTP/1.1
+Content-Type: application/json
+
+{
+    "userName":"w3sd",
+    "phone":"0001000004",
+    "userType":"worker",
+    "password":"123456"
+}
+
+###

@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <script src="/javascripts/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/stylesheets/bootstrap.min.css" />
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+
+    <title>Document</title>
+
+    <div class="container-fluid"><%-include('partials/header.ejs')%></div>
+
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  </head>
+  <style>
+    .cardHover:hover {
+      box-shadow: 2px 2px 4px #b9b9b9;
+    }
+    div > .card {
+      margin-left: 3vw;
+      margin-bottom: 10vh;
+    }
+  </style>
+
+  <body>
+    <div class="alert alert-warning" id="medicine" style="display: none">
+      <h3>You can now order Medicines</h3>
+    </div>
+    <div class="alert alert-warning" id="foodAlert" style="display: none">
+      <h3>You can now order Food Items</h3>
+    </div>
+    <div class="container-fluid mt-4">
+      <div class="container">
+        <!-- first row -->
+        <div class="row center">
+          <div
+            id="foodCard"
+            class="card p-2 cardHover"
+            style="border: none; width: fit-content"
+          >
+            <div class="card-img">
+              <img width="150px" src="/images/food.jpg" />
+            </div>
+            <div class="card-title elemCenter pt-2 fw-bold">Food Items</div>
+          </div>
+          <div
+            id="pharmacyCard"
+            class="card p-2 cardHover"
+            style="border: none; width: fit-content"
+          >
+            <div class="card-img">
+              <img width="150px" src="/images/pharmacy.jpg" />
+            </div>
+            <div class="card-title elemCenter pt-2 fw-bold">Pharmacy</div>
+          </div>
+        </div>
+        <!-- first row end -->
+
+        <div id="steakCard" style="display: none">
+          <div class="row center">
+            <div class="card col-lg-3">
+              <div class="card-img">
+                <img
+                  onclick="orderFood()"
+                  class="d-block w-100"
+                  height="20vh"
+                  src="/images/steak.jpg"
+                  style="object-fit: fill; height: 40vh"
+                  alt="Third slide"
+                />
+              </div>
+            </div>
+            <div class="card col-lg-3">
+              <div class="card-img">
+                <img
+                  onclick="orderFood()"
+                  class="d-block w-100"
+                  height="20vh"
+                  src="/images/steak.jpg"
+                  style="object-fit: fill; height: 40vh"
+                  alt="Third slide"
+                />
+              </div>
+            </div>
+            <div class="card col-lg-3">
+              <div class="card-img">
+                <img
+                  onclick="orderFood()"
+                  class="d-block w-100"
+                  height="20vh"
+                  src="/images/steak.jpg"
+                  style="object-fit: fill; height: 40vh"
+                  alt="Third slide"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="pharmaCard" style="display: none">
+          <div class="row center">
+            <div class="card col-lg-3">
+              <div class="card-img">
+                <img
+                  class="d-block w-100"
+                  height="20vh"
+                  onclick="orderMedicine()"
+                  src="/images/pharmacy.jpg"
+                  style="object-fit: fill; height: 40vh"
+                  alt="Third slide"
+                />
+              </div>
+            </div>
+            <div class="card col-lg-3">
+              <div class="card-img">
+                <img
+                  class="d-block w-100"
+                  onclick="orderMedicine()"
+                  height="20vh"
+                  src="/images/pharmacy.jpg"
+                  style="object-fit: fill; height: 40vh"
+                  alt="Third slide"
+                />
+              </div>
+            </div>
+            <div class="card col-lg-3">
+              <div class="card-img">
+                <img
+                  onclick="orderMedicine()"
+                  class="d-block w-100"
+                  height="20vh"
+                  src="/images/pharmacy.jpg"
+                  style="object-fit: fill; height: 40vh"
+                  alt="Third slide"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container">
+        <!-- carousel -->
+
+        <div id="myCarousel" class="carousel slide center" data-ride="carousel">
+          <!-- Indicators -->
+          <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+          </ol>
+
+          <!-- Wrapper for slides -->
+          <div class="carousel-inner">
+            <div class="item active">
+              <img
+                class="d-block w-100"
+                height="40vh"
+                src="/images/steak.jpg"
+                style="object-fit: fill; height: 40vh"
+                alt="Third slide"
+              />
+            </div>
+
+            <div class="item">
+              <img
+                class="d-block w-100"
+                src="/images/burger.jpg"
+                style="object-fit: fill; height: 40vh"
+                alt="First slide"
+              />
+            </div>
+
+            <div class="item">
+              <img
+                class="d-block w-100"
+                src="/images/pizza.png "
+                style="object-fit: fill; height: 40vh"
+                alt="Second slide"
+              />
+            </div>
+          </div>
+
+          <!-- Left and right controls -->
+          <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a
+            class="right carousel-control"
+            href="#myCarousel"
+            data-slide="next"
+          >
+            <span class="glyphicon glyphicon-chevron-right"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+
+        <!-- carousel end -->
+      </div>
+    </div>
+  </body>
+</html>
+<script>
+  $(".carousel").carousel();
+
+  $("#foodCard").click(function () {
+    $("#steakCard").toggle();
+    $("#pharmaCard").hide();
+
+  });
+
+  $("#pharmacyCard").click(function () {
+    $("#pharmaCard").toggle();
+    $("#steakCard").hide();
+
+  });
+
+  function orderFood() {
+    $("#foodAlert").show();
+    setTimeout(() => {
+      $("#foodAlert").hide();
+    }, 3000);
+  }
+  function orderMedicine() {
+    $("#medicine").show();
+
+    setTimeout(() => {
+      $("#medicine").hide();
+    }, 3000);
+  }
+</script>

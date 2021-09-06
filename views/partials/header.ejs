@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <script src="/javascripts/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/stylesheets/bootstrap.min.css" />
+
+    <!-- JavaScript Bundle with Popper -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+      crossorigin="anonymous"
+    ></script>
+    <!-- CSS only -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"
+    ></script>
+
+    <title>Document</title>
+  </head>
+  <style>
+    ul {
+      display: inline-block;
+      margin: 0;
+    }
+
+    #navBar {
+      top: 0%;
+      width: 100vw;
+      margin-left: 0%;
+      position: absolute;
+      background-color: #e3f2fd;
+      display: flex;
+      left: 0%;
+    }
+    a {
+      font-weight: bold;
+    }
+  </style>
+  <body>
+    <nav id="navBar" class="navbar navbar-expand-lg navbar-light">
+      <a class="navbar-brand" href="/">Shopify</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNavAltMarkup"
+        aria-controls="navbarNavAltMarkup"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav" style="left: 5%; position: absolute"></div>
+        <div class="navbar-nav" style="right: 5%; position: absolute">
+          <%if(user){%>
+            <strong class="mr-3 mt-2">Hello, <%=user.userName%></strong>
+          <%}%>
+          <a class="nav-item nav-link" href="/admin">Admin</a>
+          <%if(user && user!=''){%>
+              <a class="nav-item nav-link" id="adminSignOut" style="display: none;" href="/adminSignOut">Sign Out</a>
+              <a class="nav-item nav-link" id="signOut" style="display: none;" href="/signOut">Sign Out</a>
+              <%}else{%>
+          <a class="nav-item nav-link" href="/signUp">Sign up</a>
+          <a class="nav-item nav-link" href="/signIn">Sign In</a>
+          <%}%>
+        </div>
+      </div>
+    </nav>
+  </body>
+</html>
+
+<script>
+
+ $('#adminSignOut').toggle()
+ $('signOut').toggle()
+
+  function getCookie(name) {
+    var dc = document.cookie;
+    var prefix = name + "=";
+    var begin = dc.indexOf("; " + prefix);
+    if (begin == -1) {
+        begin = dc.indexOf(prefix);
+        if (begin != 0) return null;
+    }
+    else
+    {
+        begin += 2;
+        var end = document.cookie.indexOf(";", begin);
+        if (end == -1) {
+        end = dc.length;
+        }
+    }
+    // because unescape has been deprecated, replaced with decodeURI
+    //return unescape(dc.substring(begin + prefix.length, end));
+    return decodeURI(dc.substring(begin + prefix.length, end));
+}
+let c=getCookie('isAdmin')
+
+if(c) $('#adminSignOut').show()
+else $('signOut').show()
+
+</script>

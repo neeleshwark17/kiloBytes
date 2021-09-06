@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <div class="container-fluid"><%-include('partials/header.ejs')%></div>
+
+    <title>Document</title>
+</head>
+<style>
+    label {
+      font-weight: bold;
+      font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+        "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+    }
+    body {
+      overflow: hidden;
+    }
+  </style>
+<body>
+    <div class="container center mt-4" style="height: 100vh">
+        <div
+          class="card p-4 col-lg-4 col-md-6 col-sm-8 center"
+          style="background-color: whitesmoke"
+        >
+          <div class="card-body">
+            <div class="card-title elemCenter">
+              <h3>Add Worker</h3>
+            </div>
+            <form id="signUp" action="/addWorkerPost" method="POST">
+              <div class="form-group">
+                <label> Name </label>
+                <br />
+                <input
+                  name="workerName"
+                  id="workerName"
+                  class="form-control"
+                  type="text"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label> Phone </label>
+                <br />
+                <input
+                  name="workerPhone"
+                  id="workerPhone"
+                  class="form-control"
+                  type="number"
+                  required
+                />
+              </div>
+                
+              <div class="form-group">
+                <label>Password</label>
+                <br />
+                <input
+                  name="workerPassword"
+                  id="workerPassword"
+                  class="form-control"
+                  type="password"
+                  required
+                />
+              </div>
+              <center>
+                <input class="btn btn-primary" type="submit" value="Sign Up" />
+              </center>
+            </form>
+          </div>
+        </div>
+      </div>
+</body>
+</html>

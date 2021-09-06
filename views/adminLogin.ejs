@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <div class="container-fluid"><%-include('partials/header.ejs')%></div>
+
+    <title>Document</title>
+  </head>
+
+  <style>
+    body {
+      overflow: hidden;
+    }
+    label {
+      font-weight: bold;
+      font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+        "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+    }
+  </style>
+
+  <body>
+    <div class="container center" style="height: 100vh">
+      <div
+        class="card p-4 col-lg-4 col-md-6 col-sm-8 center"
+        style="background-color: whitesmoke"
+      >
+        <div class="card-body">
+          <div class="card-title elemCenter">
+            <h3>Admin Sign In</h3>
+          </div>
+          <form id="signIn" action="/adminSignIn" method="POST">
+            <div class="form-group">
+              <label> Phone </label>
+              <br />
+              <input
+                id="adminPhone"
+                name="adminPhone"
+                placeholder="Phone"
+                class="form-control"
+                type="number"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label>Password</label>
+              <br />
+              <input
+                id="adminPassword"
+                name="adminPassword"
+                placeholder="Password"
+                class="form-control"
+                type="password"
+                required
+              />
+            </div>
+            <center>
+              <button class="btn btn-primary" type="submit">Sign In</button>
+            </center>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+
+<script>
+  $("document").ready(function () {
+    // if (`signedUp`) {
+    //   $("#signedUpAlert").show();
+    //   setTimeout(() => {
+    //     $("#signedUpAlert").hide();
+    //   }, 3000);
+    // }
+    // $("#signIn").submit(async function (e) {
+    //   e.preventDefault();
+
+    //   let adminPhone = $("#adminPhone").val();
+    //   let adminPassword = $("#adminPassword").val();
+      
+    //   try {
+    //     const requestSend = await fetch("/adminSignIn", {
+    //       method: "POST",
+    //       body: JSON.stringify({
+    //         adminPhone: adminPhone,
+    //         adminPassword: adminPassword,
+    //       }),
+    //       headers: { "Content-type": "application/json" },
+    //     });
+    //     const data = await requestSend.json();
+    //     console.table(
+    //       "%clogin Data--",
+    //       "background-color:green;color:red",
+    //       data
+    //     );
+    //     if (data.user) {
+    //       console.log("Success");
+    //       window.location.href="/adminDashboard",{data};
+    //     }
+    //   } catch (error) {
+    //     console.table(
+    //       "%cerrors in login--",
+    //       "background-color:red;color:white",
+    //       error
+    //     );
+    //   }
+    // });
+  });
+</script>

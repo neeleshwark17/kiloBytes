@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+   
+    <div class="container-fluid"><%-include('partials/header.ejs')%></div>
+
+    <title>Document</title>
+  </head>
+  <style>
+    body {
+      overflow: hidden;
+    }
+    label {
+      font-weight: bold;
+      font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+        "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+    }
+  </style>
+  <body>
+    <div class="container center mt-4" style="height: 100vh">
+      <div
+        class="card p-4 col-lg-4 col-md-6 col-sm-8 center"
+        style="background-color: whitesmoke"
+      >
+        <div class="card-body">
+          <div class="card-title elemCenter">
+            <h3>Sign Up</h3>
+          </div>
+          <form id="signUp">
+            <div class="form-group">
+              <label> Name </label>
+              <br />
+              <input
+                name="userName"
+                id="userName"
+                class="form-control"
+                type="text"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label> Phone </label>
+              <br />
+              <input
+                name="userPhone"
+                id="userPhone"
+                class="form-control"
+                type="number"
+                required
+              />
+            </div>
+            <div>
+              <input
+                name="userType"
+                id="userType"
+                type="text"
+                value="customer"
+                required
+                hidden
+              />
+            </div>
+
+            <div class="form-group">
+              <label>Password</label>
+              <br />
+              <input
+                name="userPassword"
+                id="userPassword"
+                class="form-control"
+                type="password"
+                required
+              />
+            </div>
+            <center>
+              <input class="btn btn-primary" type="submit" value="Sign Up" />
+            </center>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+
+<script>
+  $(document).ready(function () {
+    $("#signUp").submit(async function (e) {
+      e.preventDefault();
+
+      let userName = $("#userName").val();
+      let userPhone = $("#userPhone").val();
+      let userType=$('#userType').val();
+      let userPassword = $("#userPassword").val();
+
+      console.log(userName, userPhone, userPassword);
+      try {
+        const res = await fetch("/signUp", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            userName: userName,
+            userPhone: userPhone,
+            userType:userType,
+            userPassword: userPassword,
+          }),
+        });
+
+        const data = await res.json();
+        console.log(data);
+        if (data) location.assign("/",{title:'Login',signedUp:true});
+      } catch (e) {}
+    });
+  });
+</script>

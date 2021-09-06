@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <div class="container-fluid"><%-include('partials/header.ejs')%></div>
+
+    <title>Document</title>
+  </head>
+  <style>
+    label {
+      font-weight: bold;
+      font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+        "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+    }
+    body {
+      overflow: hidden;
+    }
+  </style>
+  <body>
+    <div id="signedUpAlert" class="alert alert-success" style="display: none">
+      Signed Up successfully, now you can login
+    </div>
+    <div class="container center mt-4" style="height: 100vh">
+      <div
+        class="card p-4 col-lg-4 col-md-6 col-sm-6 center"
+        style="background-color: whitesmoke"
+      >
+        <div class="card-body">
+          <div class="card-title elemCenter">
+            <h3>Sign In</h3>
+          </div>
+          <form id="signIn">
+            <div class="form-group">
+              <label> Phone </label>
+              <br />
+              <input
+                id="userPhone"
+                name="userPhone"
+                placeholder="Phone"
+                class="form-control"
+                type="number"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label>Password</label>
+              <br />
+              <input
+                id="userPassword"
+                name="userPassword"
+                placeholder="Password"
+                class="form-control"
+                type="password"
+                required
+              />
+            </div>
+            <center>
+              <button class="btn btn-primary" type="submit">Sign In</button>
+            </center>
+          </form>
+          <div
+            class="elemCenter"
+            style="color: red; font-weight: bold"
+            id="errorDiv"
+          ></div>
+        </div>
+      </div>
+
+      <form action="/workerDashboard" id="wD" method="POST" style="display: none;">
+        <input id="wName" name="wName" type="text" required/>
+      </form>
+    </div>
+  </body>
+</html>
+
+<script>
+  $("document").ready(function () {
+    $("#signIn").submit(async function (e) {
+      e.preventDefault();
+
+      let userPhone = $("#userPhone").val();
+      let userPassword = $("#userPassword").val();
+      console.log(
+        "%c Phone and Password--",
+        "background-color:yellow;color:black",
+        userPhone + "\n" + userPassword
+      );
+
+      try {
+        const requestSend = await fetch("/signIn", {
+          method: "POST",
+          body: JSON.stringify({
+            userPhone: userPhone,
+            userPassword: userPassword,
+          }),
+          headers: { "Content-type": "application/json" },
+        });
+        const data = await requestSend.json();
+        console.table(
+          "%clogin Data--",
+          "background-color:green;color:red",
+          data
+        );
+        if (data.user) {
+          console.log("Success");
+          if (data.user.userType == "worker") {
+            $("#wName").val(data.user.userName);
+            alert($("#wName").val())
+            $('#wD').submit()
+          } else {
+            location.assign("/");
+          }
+        } else {
+          $("#errorDiv").text("User not found");
+        }
+      } catch (error) {
+        console.table(
+          "%cerrors in login--",
+          "background-color:red;color:white",
+          error
+        );
+        $("#errorDiv").text("User not found");
+      }
+    });
+  });
+</script>
